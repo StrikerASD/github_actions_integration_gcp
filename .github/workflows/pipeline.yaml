@@ -43,13 +43,13 @@ jobs:
         run:  terraform get -update=true
 
       - name: Terraform Init
-        run: terraform -chdir=terraform init -upgrade
+        run: terraform init -upgrade
 
       - name: Terraform Plan
-        run: terraform -chdir=terraform plan -out=plan.out
+        run: terraform plan -out=plan.out
 
       - name: Terraform Apply
-        run: terraform -chdir=terraform apply --auto-approve plan.out
+        run: terraform apply --auto-approve plan.out
 
 #      - name: Terraform Destroy
-#        run: terraform -chdir=terraform destroy --auto-approve
+#        run: terraform destroy --auto-approve
