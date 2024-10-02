@@ -5,7 +5,7 @@ resource "google_project_service" "wif_api" {
     "iamcredentials.googleapis.com",
     "sts.googleapis.com",
   ])
-  project            = "sb-izal-20240910-144605"
+  project            = var.project_id
   service            = each.value
   disable_on_destroy = false
 }

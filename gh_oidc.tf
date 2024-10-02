@@ -1,7 +1,7 @@
 module "gh_oidc" {
   source            = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   version           = "v3.1.1"
-  project_id        = "sb-izal-20240910-144605"
+  project_id        = var.project_id
   pool_id           = "gh-identity-pool"
   pool_display_name = "Identity Pool"
   provider_id       = "gh-provider"
