@@ -6,7 +6,6 @@ resource "google_service_account" "github-svc" {
 }
 
 resource "google_project_iam_member" "github-access" {
-
   project = var.project_id
   role    = "roles/owner"
   member  = "serviceAccount:${google_service_account.github-svc.email}"
