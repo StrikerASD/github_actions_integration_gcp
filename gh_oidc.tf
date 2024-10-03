@@ -12,4 +12,12 @@ module "gh_oidc" {
       attribute = "attribute.repository_owner/StrikerASD"
     }
   }
+  attribute_mapping = {
+    "google.subject"            = "assertion.sub"
+    "attribute.actor"           = "assertion.actor"
+    "attribute.aud"             = "assertion.aud"
+    "attribute.repository"      = "assertion.repository"
+    "attribute.repository_owner" = "assertion.repository_owner"
+  }
+  attribute_condition = "assertion.repository_owner=='StrikerASD'"
 }
