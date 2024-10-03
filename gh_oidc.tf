@@ -4,7 +4,7 @@ module "gh_oidc" {
   project_id        = var.project_id
   pool_id           = "gh-identity-pool-second"
   pool_display_name = "Identity Pool Second"
-  provider_id       = "gh-provider"
+  provider_id       = "gh-provider-second"
   sa_mapping = {
     (google_service_account.github-svc.account_id) = {
       sa_name   = google_service_account.github-svc.name
