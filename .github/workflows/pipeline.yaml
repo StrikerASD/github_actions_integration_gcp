@@ -1,56 +1,56 @@
-name: Run gcloud commands to list maven packages
-on:
-  push:
-    branches:
-      - main
-env:
-  PROJECT_ID: 'sb-izal-20241001-134850'
-  PROJECT_NO: '295291854751'
-  IDENTITY_POOL_ID: 'gh-identity-pool-third'
-
-jobs:
-  terraform:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          create_credentials_file: 'true'
-          workload_identity_provider: 'projects/${{env.PROJECT_NO}}/locations/global/workloadIdentityPools/${{env.IDENTITY_POOL_ID}}/providers/gh-provider'
-
-          # Below are from the above terraform code
-          # workloadIdentityPools = gh-identity-pool
-          # providers/gh-provider'
-
-          service_account: 'gcp-github-access@${{env.PROJECT_ID}}.iam.gserviceaccount.com'
-
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-        with:
-          version: '>= 363.0.0'
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Terraform get
-        run:  terraform get -update=true
-
-      - name: Terraform Init
-        run: terraform init -upgrade
-
-      - name: Terraform Plan
-        run: terraform plan -out=plan.out
-
-      - name: Terraform Apply
-        run: terraform apply --auto-approve plan.out
-
-#      - name: Terraform Destroy
-#        run: terraform destroy --auto-approve
+#name: Run gcloud commands to list maven packages
+#on:
+#  push:
+#    branches:
+#      - main
+#env:
+#  PROJECT_ID: 'sb-izal-20241001-134850'
+#  PROJECT_NO: '295291854751'
+#  IDENTITY_POOL_ID: 'gh-identity-pool-third'
+#
+#jobs:
+#  terraform:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: 'read'
+#      id-token: 'write'
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#
+#      - id: 'auth'
+#        name: 'Authenticate to Google Cloud'
+#        uses: 'google-github-actions/auth@v1'
+#        with:
+#          create_credentials_file: 'true'
+#          workload_identity_provider: 'projects/${{env.PROJECT_NO}}/locations/global/workloadIdentityPools/${{env.IDENTITY_POOL_ID}}/providers/gh-provider'
+#
+#          # Below are from the above terraform code
+#          # workloadIdentityPools = gh-identity-pool
+#          # providers/gh-provider'
+#
+#          service_account: 'gcp-github-access@${{env.PROJECT_ID}}.iam.gserviceaccount.com'
+#
+#      - name: 'Set up Cloud SDK'
+#        uses: 'google-github-actions/setup-gcloud@v1'
+#        with:
+#          version: '>= 363.0.0'
+#
+#      - name: Setup Terraform
+#        uses: hashicorp/setup-terraform@v2
+#
+#      - name: Terraform get
+#        run:  terraform get -update=true
+#
+#      - name: Terraform Init
+#        run: terraform init -upgrade
+#
+#      - name: Terraform Plan
+#        run: terraform plan -out=plan.out
+#
+#      - name: Terraform Apply
+#        run: terraform apply --auto-approve plan.out
+#
+##      - name: Terraform Destroy
+##        run: terraform destroy --auto-approve

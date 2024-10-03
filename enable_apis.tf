@@ -4,6 +4,8 @@ resource "google_project_service" "wif_api" {
     "cloudresourcemanager.googleapis.com",
     "iamcredentials.googleapis.com",
     "sts.googleapis.com",
+    "cloudkms.googleapis.com",
+    "container.googleapis.com"
   ])
   project            = var.project_id
   service            = each.value
