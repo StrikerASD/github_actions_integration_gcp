@@ -6,7 +6,9 @@ resource "google_project_service" "wif_api" {
     "sts.googleapis.com",
     "cloudkms.googleapis.com",
     "container.googleapis.com",
-    "run.googleapis.com"
+    "run.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "secretmanager.googleapis.com"
   ])
   project            = var.project_id
   service            = each.value
