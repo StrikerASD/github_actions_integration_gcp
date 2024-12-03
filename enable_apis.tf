@@ -8,7 +8,8 @@ resource "google_project_service" "wif_api" {
     "container.googleapis.com",
     "run.googleapis.com",
     "artifactregistry.googleapis.com",
-    "secretmanager.googleapis.com"
+    "secretmanager.googleapis.com",
+    "orgpolicy.googleapis.com"
   ])
   project            = var.project_id
   service            = each.value
